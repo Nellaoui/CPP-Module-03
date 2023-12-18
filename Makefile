@@ -1,8 +1,8 @@
-Name = Fixed
+Name = ClapTrap
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp Fixed.cpp
+SRC = main.cpp ClapTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
