@@ -5,13 +5,22 @@
 */
 ClapTrap::ClapTrap()
 {
+	std::cout << "Claptrap : Default CONSTRUCTOR Called " << std::endl;
+	name = "noaman";
 	health = 10;
 	energyPoint = 10;
-	attackDammage = 3;
+	attackDammage = 0;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : name(name) ,health(10), energyPoint(10), attackDammage(3)
+ClapTrap::ClapTrap(const ClapTrap &copy)
 {
+	std::cout << " ClapTrap : Copy constructor called" << std::endl;
+	*this = copy;
+}
+
+ClapTrap::ClapTrap(const std::string &name) : name(name) ,health(10), energyPoint(10), attackDammage(0)
+{
+	std::cout << "Claptrap : CONSTRUCTOR Called " << std::endl;
 }
 
 
@@ -21,6 +30,8 @@ ClapTrap::ClapTrap(const std::string &name) : name(name) ,health(10), energyPoin
 
 ClapTrap::~ClapTrap()
 {
+	std::cout << "Claptrap : DESTRUCTOR Called " << std::endl;
+
 }
 
 
@@ -28,9 +39,9 @@ ClapTrap::~ClapTrap()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-
 ClapTrap &	ClapTrap::operator=(ClapTrap const & rhs )
 {
+	std::cout << "Claptrap : Copy Assignement constuctor Called " << std::endl;
 	if ( this != &rhs )
 	{
 		this->name = rhs.getName();
@@ -40,16 +51,6 @@ ClapTrap &	ClapTrap::operator=(ClapTrap const & rhs )
 	}
 	return *this;
 }
-
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
 
 
 /* ************************************************************************** */
@@ -70,6 +71,10 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (health > 0)
 	{
 		std::cout << name << " takes " << amount << " of Damage " << std::endl;
+		if (amount >= health)
+			health = 0;
+		else
+			health = health - amount;
 	}
 	else
 		std::cout << name << " No more HP" << std::endl;
